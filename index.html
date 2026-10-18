@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>شيخة & هشام </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .page {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .image-section {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .image-section img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        /* الصور القابلة للضغط */
+        .clickable {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* الصورة 8 والعداد */
+        .countdown-section {
+            position: relative;
+            width: 100%;
+        }
+
+        .countdown-section img {
+            width: 100%;
+            display: block;
+        }
+
+        .countdown {
+             position: absolute;
+
+    /* إنزال العداد قليلاً */
+    top: 57%;
+
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    /* ترتيب من اليسار إلى اليمين */
+    direction: ltr;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+}
+
+/* الأرقام */
+.number {
+    font-size: clamp(22px, 7vw, 50px);
+    font-weight: bold;
+    line-height: 1;
+
+    /* لون مارو/ذهبي داكن مناسب للصورة */
+    color: #8B6F47;
+}
+
+/* الكلمات: يوم، ساعة، دقيقة، ثانية */
+.label {
+    margin-top: 7px;
+    font-size: clamp(11px, 3vw, 18px);
+    font-weight: bold;
+
+    /* نفس اللون */
+    color: #8B6F47;
+}
+
+        .time-box {
+            min-width: 65px;
+        }
+
+        .number {
+            font-size: clamp(22px, 7vw, 50px);
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .label {
+            margin-top: 7px;
+            font-size: clamp(11px, 3vw, 18px);
+            font-weight: bold;
+        }
+
+        @media (max-width: 500px) {
+
+            .countdown {
+                gap: 5px;
+            }
+
+            .time-box {
+                min-width: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="page">
+
+        <!-- الصورة 1
+             الضغط في أي مكان ينتقل للصورة 2 -->
+        <section class="image-section clickable"
+                 onclick="goToImage2()">
+
+            <img src="images/01_open_invitation.jpg"
+                 alt="افتح دعوتك">
+
+        </section>
+
+
+        <!-- الصورة 2 -->
+        <section class="image-section">
+
+            <img src="images/02_names_date.jpg"
+                 alt="إيناس وعبد الرؤوف">
+
+        </section>
+
+
+        <!-- الصورة 3
+             الضغط في أي مكان في الصورة يشغل الموسيقى -->
+        <section class="image-section clickable"
+                 onclick="playMusic()">
+
+            <img src="images/03_music.jpg"
+                 alt="الموسيقى">
+
+        </section>
+
+
+        <!-- الصورة 4 -->
+        <section class="image-section">
+
+            <img src="images/04_agenda.jpg"
+                 alt="برنامج الحفل">
+
+        </section>
+
+
+        <!-- الصورة 5 -->
+        <section class="image-section">
+
+            <img src="images/05_wedding_details.jpg"
+                 alt="تفاصيل الزفاف">
+
+        </section>
+
+
+        <!-- الصورة 6
+             تفاصيل برنامج العرس -->
+        <section class="image-section">
+
+            <img src="images/06_wedding_program.jpg"
+                 alt="برنامج العرس">
+
+        </section>
+
+
+        <!-- الصورة 7
+             الضغط في أي مكان يفتح موقع الزفاف -->
+        <section class="image-section clickable"
+                 onclick="openLocation()">
+
+            <img src="images/07_location.jpg"
+                 alt="موقع الزفاف">
+
+        </section>
+
+
+        <!-- الصورة 8
+             العداد يظهر فوق الصورة -->
+        <section class="countdown-section">
+
+            <img src="images/08_countdown.jpg"
+                 alt="العد التنازلي">
+                <div class="countdown">
+
+                <div class="time-box">
+
+                    <div class="number" id="days">
+                        00
+                    </div>
+
+                    <div class="label">
+                        يوم
+                    </div>
+
+                </div>
+
+
+                <div class="time-box">
+
+                    <div class="number" id="hours">
+                        00
+                    </div>
+
+                    <div class="label">
+                        ساعة
+                    </div>
+
+                </div>
+
+
+                <div class="time-box">
+
+                    <div class="number" id="minutes">
+                        00
+                    </div>
+
+                    <div class="label">
+                        دقيقة
+                    </div>
+
+                </div>
+
+
+                <div class="time-box">
+
+                    <div class="number" id="seconds">
+                        00
+                    </div>
+
+                    <div class="label">
+                        ثانية
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ملف الموسيقى -->
+    <audio id="weddingMusic"
+           src="music/sodfa.mp3"
+           preload="auto">
+    </audio>
+
+
+    <script>
+
+        /* =========================================
+           الصورة 1 → الانتقال للصورة 2
+           ========================================= */
+
+        function goToImage2() {
+
+            const image2 =
+                document.querySelectorAll(".image-section")[1];
+
+            if (image2) {
+
+                image2.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        }
+
+
+        /* =========================================
+           الصورة 3 → تشغيل الموسيقى
+           ========================================= */
+
+        function playMusic() {
+
+            const music =
+                document.getElementById("weddingMusic");
+
+            if (!music) {
+                return;
+            }
+
+            music.play()
+                .then(function () {
+
+                    console.log("الموسيقى تعمل");
+
+                })
+                .catch(function (error) {
+
+                    console.log(
+                        "تعذر تشغيل الموسيقى:",
+                        error
+                    );
+
+                });
+        }
+
+
+        /* =========================================
+           الصورة 7 → فتح موقع الزفاف
+           ========================================= */
+
+        function openLocation() {
+
+            const mapUrl =
+                "https://maps.app.goo.gl/GAnNruEG5AYcpi3P8";
+
+            window.open(mapUrl, "_blank");
+        }
+
+
+        /* =========================================
+           العد التنازلي
+           تاريخ الزفاف:
+           10 أكتوبر 2026
+           ========================================= */
+
+        const weddingDate =
+            new Date("2026-10-27T12:00:00+01:00").getTime();
+
+
+        function updateCountdown() {
+
+            const now =
+                new Date().getTime();
+
+            const difference =
+                weddingDate - now;
+
+
+            /* إذا وصل موعد الزفاف */
+
+            if (difference <= 0) {
+
+                document.getElementById("days")
+                    .textContent = "00";
+
+                document.getElementById("hours")
+                    .textContent = "00";
+
+                document.getElementById("minutes")
+                    .textContent = "00";
+
+                document.getElementById("seconds")
+                    .textContent = "00";
+
+                return;
+            }
+
+
+            /* حساب الأيام */
+
+            const days =
+                Math.floor(
+                    difference /
+                    (1000 * 60 * 60 * 24)
+                );
+
+
+            /* حساب الساعات */
+            const hours =
+                Math.floor(
+                    (difference %
+                        (1000 * 60 * 60 * 24))
+                    /
+                    (1000 * 60 * 60)
+                );
+
+
+            /* حساب الدقائق */
+
+            const minutes =
+                Math.floor(
+                    (difference %
+                        (1000 * 60 * 60))
+                    /
+                    (1000 * 60)
+                );
+
+
+            /* حساب الثواني */
+
+            const seconds =
+                Math.floor(
+                    (difference %
+                        (1000 * 60))
+                    /
+                    1000
+                );
+
+
+            /* عرض الأيام */
+
+            document.getElementById("days")
+                .textContent =
+                String(days).padStart(2, "0");
+
+
+            /* عرض الساعات */
+
+            document.getElementById("hours")
+                .textContent =
+                String(hours).padStart(2, "0");
+
+
+            /* عرض الدقائق */
+
+            document.getElementById("minutes")
+                .textContent =
+                String(minutes).padStart(2, "0");
+
+
+            /* عرض الثواني */
+
+            document.getElementById("seconds")
+                .textContent =
+                String(seconds).padStart(2, "0");
+        }
+
+
+        /* تشغيل العداد */
+
+        updateCountdown();
+
+        setInterval(
+            updateCountdown,
+            1000
+        );
+
+    </script>
+
+</body>
+</html>
